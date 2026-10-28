@@ -1,0 +1,384 @@
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background {
+    background: linear-gradient(
+        120deg,
+        #24152f 0%,
+        #493044 48%,
+        #251b2a 100%
+    );
+
+    height: 100vh;
+    height: 100dvh;
+
+    width: 100%;
+    overflow: hidden;
+
+    position: relative;
+    isolation: isolate;
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.content {
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 12px 16px;
+
+    overflow: hidden;
+}
+
+/* =========================================
+   BACKGROUND HEARTS
+========================================= */
+
+.hearts {
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Individual hearts */
+
+.heart {
+    position: absolute;
+
+    color: rgba(255, 170, 205, 0.6);
+
+    line-height: 1;
+
+    transform-origin: center;
+
+    animation-name: heartMove;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+    will-change: transform, opacity;
+
+    pointer-events: none;
+
+    user-select: none;
+}
+
+/* Heart animation */
+
+@keyframes heartMove {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(-10deg) scale(0.9);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: translate3d(0, -18px, 0) rotate(8deg) scale(1.05);
+        opacity: 0.65;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0) rotate(-10deg) scale(0.9);
+        opacity: 0.2;
+    }
+}
+
+/* =========================================
+   FALLING PARTICLES
+========================================= */
+
+.particles {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Individual particles */
+
+.particle {
+    position: absolute;
+
+    top: -10%;
+    left: var(--left);
+
+    font-size: var(--size);
+
+    opacity: 0;
+
+    color: #f9a8d4;
+
+    animation: falling
+        var(--duration)
+        linear
+        var(--delay)
+        infinite;
+
+    will-change: transform, opacity;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Falling animation */
+
+@keyframes falling {
+    0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: var(--opacity);
+    }
+
+    50% {
+        transform: translate3d(var(--drift), 50vh, 0) rotate(180deg);
+        opacity: var(--opacity);
+    }
+
+    90% {
+        opacity: var(--opacity);
+    }
+
+    100% {
+        transform: translate3d(
+            calc(var(--drift) * -0.5),
+            115vh,
+            0
+        ) rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   POLAROID PHOTOS
+========================================= */
+
+.polaroid {
+    position: relative;
+    flex-shrink: 0;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fffdf7;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+
+    padding: 8px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 500ms ease,
+        box-shadow 500ms ease;
+
+    transform-origin: center;
+    cursor: pointer;
+}
+
+/* Polaroid kiri */
+.polaroidLeft {
+    width: clamp(120px, 27vw, 175px);
+    height: 230px;
+    transform: rotate(-5deg);
+}
+
+/* Polaroid kanan */
+.polaroidRight {
+    width: clamp(100px, 32vw, 210px);
+    height: 260px;
+    transform: rotate(5deg);
+}
+
+/* Gambar kiri dan kanan */
+.polaroid img {
+    display: block;
+    width: 100%;
+    min-height: 0;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+
+
+/* Tulisan bawah */
+.polaroid p {
+    flex: 1;
+    min-height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 4px 2px;
+
+    color: #5c414a;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Hover kiri */
+.polaroidLeft:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.05);
+    z-index: 10;
+}
+
+/* Hover kanan */
+.polaroidRight:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.05);
+    z-index: 10;
+}
+/* =========================================
+   MUSIC INDICATOR
+========================================= */
+
+.musicButton {
+  position: fixed;
+  right: 28px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  z-index: 50; /* Pastikan tinggi agar tampil di lapisan paling atas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================
+   MUSIC ANIMATION
+========================= */
+
+.playing {
+  animation: musicPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%,
+ 100% {
+    box-shadow: 
+      0 0 5px rgba(244, 114, 182, 0.2),
+      0 0 10px rgba(255, 180, 230, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 25px rgba(244, 114, 182, 0.9),
+      0 0 45px rgba(255, 150, 210, 0.7),
+      0 0 65px rgba(255, 100, 180, 0.5);
+  }
+}
+
+
+/* =========================================
+   SHORT SCREENS / LAPTOP
+========================================= */
+
+@media (max-height: 700px) {
+    .content {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .polaroid {
+        padding: 6px;
+    }
+}
+
+/* Very short screens */
+
+@media (max-height: 580px) {
+    .content {
+        transform: scale(0.82);
+        transform-origin: center;
+        width: 122%;
+        margin-left: -11%;
+    }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+    .polaroid {
+        padding: 5px;
+    }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .heart,
+    .particle,
+    .musicBar {
+        animation: none !important;
+    }
+
+    .heart {
+        opacity: 0.35;
+    }
+
+    .particle {
+        opacity: 0.2;
+    }
+
+    .polaroid {
+        transition: none;
+    }
+}
+/* =========================================
+   EFEK GEMERLAP TIPIS-TIPIS PADA TEKS
+========================================= */
+.shimmerText {
+    color: #ffffff;
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.4),
+        0 0 15px rgba(244, 114, 182, 0.25);
+    animation: textGlowSubtle 3s ease-in-out infinite alternate;
+}
+
+@keyframes textGlowSubtle {
+    0% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 255, 0.3),
+            0 0 10px rgba(244, 114, 182, 0.15);
+    }
+    100% {
+        text-shadow: 
+            0 0 12px rgba(255, 255, 255, 0.6),
+            0 0 22px rgba(244, 114, 182, 0.35);
+    }
+}

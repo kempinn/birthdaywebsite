@@ -1,0 +1,284 @@
+
+
+/* BACKGROUND UTAMA */
+.background {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    overflow: hidden;
+
+    background: linear-gradient(
+        #3b3045 0%,
+        #57435b 30%,
+        #76576d 60%,
+        #49394f 100%
+    );
+}
+
+.glow {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+
+    width: 350px;
+    height: 250px;
+
+    top: 20%;
+    left: 50%;
+
+    transform: translateX(-50%);
+    border-radius: 50%;
+
+    background: rgba(255, 225, 245, 0.10);
+
+    filter: blur(100px);
+    mix-blend-mode: screen;
+}
+.shimmerText {
+    color: #ffffff;
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.4),
+        0 0 15px rgba(244, 114, 182, 0.25);
+    animation: textGlowSubtle 3s ease-in-out infinite alternate;
+}
+/* ==================================
+   BACKGROUND LIGHT BLOBS
+================================== */
+
+.lightBlobs {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Bentuk dasar bercak */
+.blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: white;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 248, 255, 0.65) 0%,
+        rgba(255, 235, 248, 0.35) 25%,
+        rgba(225, 190, 230, 0.12) 50%,
+        transparent 75%
+    );
+
+    filter: blur(18px);
+    mix-blend-mode: screen;
+}
+
+/* Bercak besar kiri tengah */
+.blob1 {
+    width: 300px;
+    height: 300px;
+    top: 35%;
+    left: 8%;
+    opacity: 0.65;
+}
+
+/* Bercak atas kiri, lebih samar */
+.blob2 {
+    width: 200px;
+    height: 100px;
+    top: 12%;
+    left: 22%;
+    opacity: 0.35;
+}
+
+/* Bercak atas tengah */
+.blob3 {
+    width: 100px;
+    height: 130px;
+    top: 6%;
+    left: 48%;
+    opacity: 0.40;
+}
+
+/* Bercak kanan atas */
+.blob4 {
+    width: 250px;
+    height: 150px;
+    top: 15%;
+    right: 5%;
+    opacity: 0.50;
+}
+
+/* Bercak kanan tengah */
+.blob5 {
+    width: 200px;
+    height: 140px;
+    top: 38%;
+    right: 12%;
+    opacity: 0.40;
+}
+
+/* Bercak kecil kiri bawah */
+.blob6 {
+    width: 300px;
+    height: 150px;
+    bottom: 8%;
+    left: 18%;
+    opacity: 0.45;
+}
+
+/* Bercak bawah tengah */
+.blob7 {
+    width: 300px;
+    height: 200px;
+    bottom: 18%;
+    left: 43%;
+    opacity: 0.30;
+}
+
+/* Bercak kanan bawah */
+.blob8 {
+    width: 190px;
+    height: 100px;
+    bottom: 5%;
+    right: 10%;
+    opacity: 0.40;
+}
+
+/* Bercak kecil kiri atas */
+.blob9 {
+    width: 180px;
+    height: 100px;
+    top: 25%;
+    left: 3%;
+    opacity: 0.55;
+}
+
+/* Bercak kecil kanan atas */
+.blob10 {
+    width: 100px;
+    height: 150px;
+    top: 30%;
+    right: 30%;
+    opacity: 0.35;
+}
+
+/* Bercak kecil kiri bawah */
+.blob11 {
+    width: 120px;
+    height: 100px;
+    bottom: 28%;
+    left: 32%;
+    opacity: 0.45;
+}
+
+/* Bercak kecil kanan bawah */
+.blob12 {
+    width: 100px;
+    height: 90px;
+    bottom: 35%;
+    right: 25%;
+    opacity: 0.35;
+}
+
+
+/* PARTICLE CONTAINER */
+.particles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* FALLING PARTICLES */
+.particle {
+    position: absolute;
+    top: -10%;
+    left: var(--left);
+
+    font-size: var(--size);
+    opacity: 0;
+
+    /* Gradient pink - lavender - purple */
+    background: linear-gradient(
+        135deg,
+        #fbcfe8 0%,
+        #f472b6 30%,
+        #c084fc 65%,
+        #a78bfa 100%
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    filter: drop-shadow(
+        0 0 5px rgba(244, 114, 182, 0.35)
+    );
+
+    animation:
+        falling var(--duration) linear var(--delay) infinite;
+}
+
+
+/* ANIMASI JATUH */
+@keyframes falling {
+    0% {
+        transform:
+            translate3d(0, -10vh, 0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: var(--opacity);
+    }
+
+    50% {
+        transform:
+            translate3d(var(--drift), 50vh, 0)
+            rotate(180deg);
+
+        opacity: var(--opacity);
+    }
+
+    90% {
+        opacity: var(--opacity);
+    }
+
+    100% {
+        transform:
+            translate3d(
+                calc(var(--drift) * -0.5),
+                115vh,
+                0
+            )
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+@keyframes textGlowPulse {
+   0% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 255, 0.3),
+            0 0 10px rgba(244, 114, 182, 0.15);
+    }
+    100% {
+        text-shadow: 
+            0 0 12px rgba(255, 255, 255, 0.6),
+            0 0 22px rgba(244, 114, 182, 0.35);
+    }
+}
+
+/* RESPONSIVE */
+@media (prefers-reduced-motion: reduce) {
+    .particle {
+        animation: none;
+        opacity: 0.35;
+    }
+}

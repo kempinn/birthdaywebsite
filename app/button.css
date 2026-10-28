@@ -1,0 +1,35 @@
+.button {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.buttonFill {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    background: linear-gradient(
+        90deg,
+        #ec4899,
+        #f472b6
+    );
+
+    border-radius: inherit;
+
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    transition: transform 600ms ease;
+}
+
+
+.button:hover .buttonFill {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+
+.button:disabled .buttonFill {
+    transform: scaleX(0);
+}

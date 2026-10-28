@@ -1,0 +1,494 @@
+/* =========================
+   PAGE
+========================= */
+
+.letterPage {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  position: relative;
+
+  padding: 42px 20px 40px;
+
+  overflow: hidden;
+
+  /* BACKGROUND UTAMA */
+  background:
+    radial-gradient(
+      ellipse at 15% 35%,
+      rgba(188, 91, 169, 0.65) 0%,
+      rgba(130, 62, 125, 0.42) 25%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 75% 60%,
+      rgba(90, 45, 105, 0.55) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      #42243f 0%,
+      #2e1b31 45%,
+      #1e1525 100%
+    );
+
+  isolation: isolate;
+}
+
+
+/* =========================
+   STAR FIELD (Statis / Tidak Bergerak)
+========================= */
+
+.letterPage::before {
+  content: "";
+
+  position: absolute;
+  inset: -50%;
+
+  z-index: -1;
+
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255,255,255,0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255,220,255,0.8) 0 1.2px, transparent 1.8px);
+
+  background-size:
+    145px 145px,
+    210px 210px,
+    280px 280px;
+
+  background-position:
+    20px 40px,
+    80px 120px,
+    150px 30px;
+
+  opacity: 0.65;
+}
+
+
+/* =========================
+   FALLING STARS (Statis / Tidak Jatuh)
+========================= */
+
+.letterPage::after {
+  content: "";
+
+  position: absolute;
+
+  width: 2px;
+  height: 2px;
+
+  top: 10%;
+  left: 20%;
+
+  z-index: -1;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    180px 100px 0 0 rgba(255,255,255,0.8),
+    420px 30px 0 0 rgba(255,255,255,0.6),
+    700px 180px 0 0 rgba(255,255,255,0.7),
+    950px 70px 0 0 rgba(255,255,255,0.8),
+    1150px 300px 0 0 rgba(255,255,255,0.6),
+    300px 450px 0 0 rgba(255,255,255,0.7),
+    800px 520px 0 0 rgba(255,255,255,0.5),
+    1100px 600px 0 0 rgba(255,255,255,0.7);
+
+  opacity: 0.7;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.letterTitle {
+  position: relative;
+  z-index: 2;
+
+  margin: 0 0 22px;
+
+  color: #fff;
+
+  font-family: "Bodoni Moda", serif;
+
+  font-size: clamp(38px, 5vw, 58px);
+
+  font-style: italic;
+
+  font-weight: 700;
+
+  letter-spacing: -1px;
+
+  text-align: center;
+
+  text-shadow:
+    0 2px 12px rgba(255, 255, 255, 0.25),
+    0 0 30px rgba(255, 180, 230, 0.2);
+}
+
+
+/* =========================
+   LETTER CARD
+========================= */
+
+.letterCard {
+  position: relative;
+  z-index: 2;
+
+  width: min(650px, 88vw);
+
+  height: min(400px, 55vh);
+
+  overflow: hidden;
+
+  border-radius: 7px;
+
+  /* Dibuat lebih menyatu dengan background */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(91, 54, 88, 0.52),
+      rgba(48, 34, 53, 0.55)
+    );
+
+  border: 1px solid rgba(255, 220, 250, 0.22);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.25),
+    inset 0 0 40px rgba(255, 190, 240, 0.035);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================
+   LETTER CONTENT (Renggang & Ringan)
+========================= */
+
+.letterContent {
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 30px 28px;
+
+  overflow-y: auto;
+
+  color: rgba(255, 255, 255, 0.95);
+
+  /* Diubah menjadi font latin yang renggang dan nyaman dibaca */
+  font-size: 19px;
+  line-height: 2.2;
+  letter-spacing: 0.8px;
+
+  white-space: pre-wrap;
+
+  text-align: left;
+
+  scrollbar-width: none;
+}
+
+.letterContent::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================
+   TYPEWRITER CURSOR
+========================= */
+
+.cursor {
+  display: inline-block;
+
+  margin-left: 2px;
+
+  color: #fff;
+
+  font-weight: 400;
+
+  animation: blink 0.8s infinite;
+}
+
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* =========================
+   CARD FADE
+========================= */
+
+.letterCard::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 45px;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(66, 39, 64, 0.55),
+    transparent
+  );
+}
+
+
+.letterCard::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 45px;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    to top,
+    rgba(42, 29, 45, 0.55),
+    transparent
+  );
+}
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+.musicButton {
+  position: fixed;
+
+  right: 28px;
+  bottom: 24px;
+
+  width: 48px;
+  height: 48px;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: white;
+
+  font-size: 20px;
+
+  background: rgba(255, 255, 255, 0.10);
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================
+   MUSIC ANIMATION
+========================= */
+
+.playing {
+  animation: musicPulse 1.8s ease-in-out infinite;
+}
+
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    box-shadow: 
+      0 0 5px rgba(244, 114, 182, 0.2),
+      0 0 10px rgba(255, 180, 230, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 25px rgba(244, 114, 182, 0.9),
+      0 0 45px rgba(255, 150, 210, 0.7),
+      0 0 65px rgba(255, 100, 180, 0.5);
+  }
+}
+
+
+/* =========================
+   SLIDER VERTIKAL (Menyatu dengan Background & Estetik)
+========================= */
+
+.verticalSlider {
+  position: absolute;
+  right: 12px;
+  top: 50px;
+  bottom: 50px;
+  width: 6px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verticalRange {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 6px;
+  height: 100%;
+  appearance: none;
+  background: rgba(130, 62, 125, 0.25);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.verticalRange::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 24px;
+  border-radius: 4px;
+  background: #f2b8e8;
+  box-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.verticalRange::-webkit-slider-thumb:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .letterPage {
+    padding: 35px 15px 30px;
+  }
+
+  .letterTitle {
+    font-size: 40px;
+    margin-bottom: 18px;
+  }
+
+  .letterCard {
+    width: 92vw;
+    height: 55vh;
+  }
+
+  .letterContent {
+    padding: 25px 20px;
+    font-size: 16px;
+    line-height: 1.85;
+    letter-spacing: 0.5px;
+  }
+
+  .musicButton {
+    width: 44px;
+    height: 44px;
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .memoriesButton {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    padding: 12px 28px;
+    border: 1px solid #f2a0b5;
+    border-radius: 999px;
+    color: #fff;
+    background: transparent;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    overflow: hidden;
+    isolation: isolate;
+    transition: color 0.3s ease;
+  }
+
+  .memoriesButton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #f28fa8;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: -1;
+  }
+
+  .memoriesButton:hover::before {
+    transform: scaleX(1);
+  }
+
+  .memoriesButton:hover {
+    color: #fff;
+  }
+}
+
+
+/* =========================
+   SHIMMER TEXT
+========================= */
+
+.shimmerText {
+    color: #ffffff;
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.4),
+        0 0 15px rgba(244, 114, 182, 0.25);
+    animation: textGlowSubtle 3s ease-in-out infinite alternate;
+}
+
+@keyframes textGlowSubtle {
+    0% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 255, 0.3),
+            0 0 10px rgba(244, 114, 182, 0.15);
+    }
+    100% {
+        text-shadow: 
+            0 0 12px rgba(255, 255, 255, 0.6),
+            0 0 22px rgba(244, 114, 182, 0.35);
+    }
+}
