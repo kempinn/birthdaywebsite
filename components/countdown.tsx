@@ -14,7 +14,7 @@ type CountdownProps = {
   onSecondsChange: (seconds: number) => void;
 };
 
-const targetDate = new Date("2026-07-28T00:00:00");
+const targetDate = new Date("2026-11-30T00:00:00");
 
 function calculateTimeLeft(): TimeLeft {
   const difference = targetDate.getTime() - new Date().getTime();
